@@ -23,10 +23,10 @@ const CONFIG = {
 const MAP_QUERY = encodeURIComponent(`${CONFIG.direccion}, ${CONFIG.ciudad}, ${CONFIG.provincia}, Argentina`);
 const MAP_EMBED_URL = `https://maps.google.com/maps?q=${MAP_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 const RESEÑA_EN_VIVO = {
-  mostrar: false, // <-- En la reunión vas a cambiar esto a true
+  mostrar: true, // <-- En la reunión vas a cambiar esto a true
   name: "Thomas Gonzalez", // <-- Acá ponés el nombre del dueño
-  role: "Dueño de ControlSI",
-  text: "La verdadera página papaaaaaa",
+  role: "Peluquera de barrio",
+  text: "Soy Vanesa y me encantó el lugar",
 };
 const WHATSAPP_URL = `https://wa.me/549${CONFIG.telefono}?text=Hola%20${CONFIG.nombreNegocio}%2C%20te%20contacto%20desde%20la%20web.%20Necesito%20asistencia%20t%C3%A9cnica%20en%20${CONFIG.ciudad}.`;
 
@@ -109,7 +109,7 @@ function ServiceModal({
             <div className="rounded-2xl border border-slate-700 bg-[#1e293b] p-6 shadow-2xl md:p-8">
               <div className="mb-6 flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600">
                     <service.icon className="h-7 w-7 text-[#0f172a]" />
                   </div>
                   <h3 className="text-xl font-bold text-white md:text-2xl">
@@ -127,7 +127,7 @@ function ServiceModal({
               <ul className="mb-8 space-y-3">
                 {service.details.map((detail, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+                    <ChevronRight className="mt-0.5 h-5 w-5 shrink-0 text-green-400" />
                     <span className="text-slate-300">{detail}</span>
                   </li>
                 ))}
@@ -138,7 +138,7 @@ function ServiceModal({
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
               >
                 <MessageCircle className="h-5 w-5" />
                 Solicitar este servicio
@@ -167,11 +167,11 @@ function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-red-400 to-red-600">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-400 to-green-600">
                 <Monitor className="h-5 w-5 text-[#0f172a]" />
               </div>
               <span className="text-lg font-bold text-white">
-                Control<span className="text-red-400">SI</span>
+                Control<span className="text-green-400">SI</span>
               </span>
             </div>
 
@@ -179,25 +179,25 @@ function Navbar() {
             <div className="hidden items-center gap-8 md:flex">
               <a
                 href="#servicios"
-                className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                className="text-sm text-slate-300 transition-colors hover:text-green-400"
               >
                 Servicios
               </a>
               <a
                 href="#ubicacion"
-                className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                className="text-sm text-slate-300 transition-colors hover:text-green-400"
               >
                 Ubicacion
               </a>
               <a
                 href="#faq"
-                className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                className="text-sm text-slate-300 transition-colors hover:text-green-400"
               >
                 FAQ
               </a>
               <a
                 href="#contacto"
-                className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                className="text-sm text-slate-300 transition-colors hover:text-green-400"
               >
                 Contacto
               </a>
@@ -210,7 +210,7 @@ function Navbar() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden rounded-xl bg-gradient-to-r from-red-500 to-red-600 px-5 py-2.5 text-sm font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:shadow-orange-500/25 md:block"
+              className="hidden rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-5 py-2.5 text-sm font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600 hover:shadow-lg hover:shadow-orange-500/25 md:block"
             >
               Soporte Urgente
             </motion.a>
@@ -236,28 +236,28 @@ function Navbar() {
                 <a
                   href="#servicios"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                  className="text-sm text-slate-300 transition-colors hover:text-green-400"
                 >
                   Servicios
                 </a>
                 <a
                   href="#ubicacion"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                  className="text-sm text-slate-300 transition-colors hover:text-green-400"
                 >
                   Ubicacion
                 </a>
                 <a
                   href="#faq"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                  className="text-sm text-slate-300 transition-colors hover:text-green-400"
                 >
                   FAQ
                 </a>
                 <a
                   href="#contacto"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm text-slate-300 transition-colors hover:text-red-400"
+                  className="text-sm text-slate-300 transition-colors hover:text-green-400"
                 >
                   Contacto
                 </a>
@@ -265,7 +265,7 @@ function Navbar() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-gradient-to-r from-red-500 to-red-600 px-5 py-2.5 text-center text-sm font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
+                  className="rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-5 py-2.5 text-center text-sm font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
                 >
                   Soporte Urgente
                 </a>
@@ -284,8 +284,8 @@ function HeroSection() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-32">
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-red-500/20 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-red-600/10 blur-3xl" />
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-green-500/20 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-green-600/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
@@ -295,8 +295,8 @@ function HeroSection() {
   transition={{ duration: 0.8, delay: 0.2 }}
   className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-slate-400 md:text-xl"
 >
-  Reparación de PC, notebooks, redes empresariales y soluciones informáticas.{" "}
-  <span className="block mt-2 font-semibold text-red-400 bg-red-500/10 px-3 py-1 rounded-lg inline-block text-sm md:text-base animate-pulse">
+  Reparación de PC, notebooks, greenes empresariales y soluciones informáticas.{" "}
+  <span className="block mt-2 font-semibold text-green-400 bg-green-500/10 px-3 py-1 rounded-lg inline-block text-sm md:text-base animate-pulse">
      ¿Tu equipo no enciende o está lento? Diagnóstico rápido en Venado Tuerto.
   </span>
   
@@ -309,7 +309,7 @@ function HeroSection() {
           className="mb-6 text-balance text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           Tu tecnologia en las
-          <span className="bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
             {" "}
             mejores manos
           </span>
@@ -321,7 +321,7 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-slate-400 md:text-xl"
         >
-          Reparacion de PC, notebooks, redes empresariales y soluciones
+          Reparacion de PC, notebooks, greenes empresariales y soluciones
           informaticas. {CONFIG.añosExperiencia} años de experiencia brindando servicio de calidad en {CONFIG.ciudad} y la region.
         </motion.p>
 
@@ -337,7 +337,7 @@ function HeroSection() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 px-8 py-4 text-lg font-semibold text-[#0f172a] shadow-lg shadow-red-500/25 transition-all hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/25"
+            className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-8 py-4 text-lg font-semibold text-[#0f172a] shadow-lg shadow-green-500/25 transition-all hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/25"
           >
             <MessageCircle className="h-5 w-5" />
             Contactanos Ahora
@@ -348,7 +348,7 @@ function HeroSection() {
             href="#servicios"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="rounded-xl border border-slate-600 px-8 py-4 text-lg font-semibold text-white transition-all hover:border-red-500 hover:bg-red-500/10"
+            className="rounded-xl border border-slate-600 px-8 py-4 text-lg font-semibold text-white transition-all hover:border-green-500 hover:bg-green-500/10"
           >
             Ver Servicios
           </motion.a>
@@ -368,7 +368,7 @@ function HeroSection() {
             { value: "24hs", label: "Soporte urgente" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-red-400 md:text-4xl">
+              <div className="text-3xl font-bold text-green-400 md:text-4xl">
               {stat.value}
               </div>
             <div className="mt-1 text-sm text-slate-400">{stat.label}</div>
@@ -405,7 +405,7 @@ function BrandLogos() {
               whileHover={{ scale: 1.1 }}
               className="group cursor-pointer"
             >
-              <span className="text-xl font-bold tracking-wider text-slate-600 opacity-50 transition-all duration-300 group-hover:text-red-400 group-hover:opacity-100 md:text-2xl">
+              <span className="text-xl font-bold tracking-wider text-slate-600 opacity-50 transition-all duration-300 group-hover:text-green-400 group-hover:opacity-100 md:text-2xl">
                 {brand.logo}
               </span>
             </motion.div>
@@ -446,7 +446,7 @@ const services = [
   },
   {
     icon: Network,
-    title: "Redes",
+    title: "greenes",
     description:
       "Soluciones de conectividad para hogares y empresas. Wifi estable y seguro.",
     details: [
@@ -454,7 +454,7 @@ const services = [
       "Extension de cobertura Wi-Fi",
       "Cableado estructurado para empresas",
       "Configuracion de VPN",
-      "Seguridad de red",
+      "Seguridad de green",
     ],
   },
   {
@@ -487,12 +487,12 @@ function ServicesSection() {
     <section id="servicios" className="px-4 py-24">
       <div className="mx-auto max-w-7xl">
         <AnimatedSection className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+          <span className="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400">
             Nuestros Servicios
           </span>
           <h2 className="mb-4 text-balance text-3xl font-bold text-white md:text-5xl">
             Soluciones informaticas
-            <span className="text-red-400"> integrales</span>
+            <span className="text-green-400"> integrales</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-slate-400">
             Ofrecemos un servicio completo para particulares y empresas.
@@ -520,8 +520,8 @@ function ServicesSection() {
               onClick={() => openModal(service)}
               className="group cursor-pointer rounded-2xl border border-slate-700 bg-[#1e293b]/50 p-8 backdrop-blur-sm"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 transition-all group-hover:from-red-500 group-hover:to-red-600">
-                <service.icon className="h-7 w-7 text-red-400 transition-colors group-hover:text-[#0f172a]" />
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 transition-all group-hover:from-green-500 group-hover:to-green-600">
+                <service.icon className="h-7 w-7 text-green-400 transition-colors group-hover:text-[#0f172a]" />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-white">
                 {service.title}
@@ -529,7 +529,7 @@ function ServicesSection() {
               <p className="mb-4 text-sm leading-relaxed text-slate-400">
                 {service.description}
               </p>
-              <span className="text-sm font-medium text-red-400 transition-colors group-hover:text-red-300">
+              <span className="text-sm font-medium text-green-400 transition-colors group-hover:text-green-300">
                 Ver detalles
               </span>
             </motion.div>
@@ -568,13 +568,13 @@ function LocationSection() {
     <section id="ubicacion" className="px-4 py-24">
       <div className="mx-auto max-w-7xl">
         <AnimatedSection className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+          <span className="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400">
             <MapPin className="mr-2 inline-block h-4 w-4" />
             Nuestra Ubicacion
           </span>
           <h2 className="mb-4 text-balance text-3xl font-bold text-white md:text-5xl">
             Visitanos en{" "}
-            <span className="text-red-400">Venado Tuerto</span>
+            <span className="text-green-400">Venado Tuerto</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-slate-400">
             Estamos ubicados en el centro de la ciudad para brindarte un servicio
@@ -611,8 +611,8 @@ function LocationSection() {
 
               <div className="mb-8 space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-500/20">
-                    <MapPin className="h-5 w-5 text-red-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-500/20">
+                    <MapPin className="h-5 w-5 text-green-400" />
                   </div>
                   <div>
                     <p className="font-medium text-white">Direccion</p>
@@ -623,21 +623,21 @@ function LocationSection() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-500/20">
-                    <Clock className="h-5 w-5 text-red-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-500/20">
+                    <Clock className="h-5 w-5 text-green-400" />
                   </div>
                   <div>
                     <p className="font-medium text-white">Horario de Atencion</p>
                     <p className="text-slate-400">{CONFIG.horario}</p>
-                    <p className="mt-1 text-sm text-red-400">
+                    <p className="mt-1 text-sm text-green-400">
                       Urgencias: 24hs por WhatsApp
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-500/20">
-                    <Phone className="h-5 w-5 text-red-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-500/20">
+                    <Phone className="h-5 w-5 text-green-400" />
                   </div>
                   <div>
                     <p className="font-medium text-white">Telefono</p>
@@ -652,7 +652,7 @@ function LocationSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
               >
                 <MessageCircle className="h-5 w-5" />
                 Contactar por WhatsApp
@@ -673,13 +673,13 @@ function LocalSection() {
         <div className="overflow-hidden rounded-3xl border border-slate-700 bg-gradient-to-br from-[#1e293b] to-[#0f172a]">
           <div className="grid items-center lg:grid-cols-2">
             <AnimatedSection className="p-8 md:p-12 lg:p-16">
-              <span className="mb-4 inline-block rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+              <span className="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400">
                 <MapPin className="mr-2 inline-block h-4 w-4" />
                 {CONFIG.ciudad}, {CONFIG.provincia}
               </span>
               <h2 className="mb-6 text-balance text-3xl font-bold text-white md:text-4xl">
                 Lideres en Soporte Tecnico en{" "}
-                <span className="text-red-400">{CONFIG.ciudad} y zona</span>
+                <span className="text-green-400">{CONFIG.ciudad} y zona</span>
               </h2>
               <p className="mb-8 text-pretty leading-relaxed text-slate-400">
                 Desde hace {CONFIG.añosExperiencia} años, somos la empresa de confianza para
@@ -698,8 +698,8 @@ function LocalSection() {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/20">
-                      <feature.icon className="h-5 w-5 text-red-400" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/20">
+                      <feature.icon className="h-5 w-5 text-green-400" />
                     </div>
                     <span className="text-white">{feature.title}</span>
                   </motion.div>
@@ -712,7 +712,7 @@ function LocalSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 px-6 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 font-semibold text-[#0f172a] transition-all hover:from-orange-500 hover:to-orange-600"
               >
                 <MessageCircle className="h-5 w-5" />
                 Solicita un presupuesto
@@ -723,7 +723,7 @@ function LocalSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#1e293b] to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="mb-4 text-8xl font-bold text-red-500/20">
+                  <div className="mb-4 text-8xl font-bold text-green-500/20">
                     {CONFIG.nombreNegocio}
                   </div>
                   <p className="text-slate-500">{CONFIG.ciudad}, {CONFIG.provincia}</p>
@@ -752,7 +752,7 @@ const reviewsBase = [
   {
     name: "Estudio Contable VT",
     role: "Abono Mensual",
-    text: "Tenemos el abono de mantenimiento para nuestras oficinas. Ante cualquier problema de red responden al instante. Un alivio técnico.",
+    text: "Tenemos el abono de mantenimiento para nuestras oficinas. Ante cualquier problema de green responden al instante. Un alivio técnico.",
     stars: 5,
   },
 ];
@@ -765,11 +765,11 @@ function ReviewsSection() {
     <section id="reseñas" className="px-4 py-24 border-t border-slate-800 bg-[#0f172a]/30">
       <div className="mx-auto max-w-7xl">
         <AnimatedSection className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+          <span className="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400">
             Opiniones de Clientes
           </span>
           <h2 className="mb-4 text-balance text-3xl font-bold text-white md:text-5xl">
-            La confianza de nuestra <span className="text-red-400">comunidad</span>
+            La confianza de nuestra <span className="text-green-400">comunidad</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-slate-400">
             Mirá lo que dicen los comercios y profesionales de Venado Tuerto que ya confían en nuestro soporte técnico.
@@ -795,7 +795,7 @@ function ReviewsSection() {
               </div>
               <div className="border-t border-slate-700/50 pt-4">
                 <p className="font-semibold text-white">{review.name}</p>
-                <p className="text-xs text-red-400">{review.role}</p>
+                <p className="text-xs text-green-400">{review.role}</p>
               </div>
             </motion.div>
           ))}
@@ -830,11 +830,11 @@ function FAQSection() {
     <section id="faq" className="px-4 py-24">
       <div className="mx-auto max-w-3xl">
         <AnimatedSection className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+          <span className="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-400">
             Preguntas Frecuentes
           </span>
           <h2 className="mb-4 text-balance text-3xl font-bold text-white md:text-5xl">
-            Dudas <span className="text-red-400">comunes</span>
+            Dudas <span className="text-green-400">comunes</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-slate-400">
             Respuestas a las preguntas mas frecuentes de nuestros clientes.
@@ -859,7 +859,7 @@ function FAQSection() {
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown className="h-5 w-5 text-red-400" />
+                    <ChevronDown className="h-5 w-5 text-green-400" />
                   </motion.div>
                 </button>
                 <AnimatePresence>
@@ -915,7 +915,7 @@ function InfiniteSlider() {
               key={index}
               className="flex items-center gap-3 whitespace-nowrap rounded-full border border-slate-700 bg-slate-800/50 px-6 py-3"
             >
-              <Building2 className="h-5 w-5 text-red-400" />
+              <Building2 className="h-5 w-5 text-green-400" />
               <span className="text-slate-300">{client}</span>
             </div>
           ))}
@@ -934,7 +934,7 @@ function InfiniteSlider() {
               key={index}
               className="flex items-center gap-3 whitespace-nowrap rounded-full border border-slate-700 bg-slate-800/50 px-6 py-3"
             >
-              <Building2 className="h-5 w-5 text-red-400" />
+              <Building2 className="h-5 w-5 text-green-400" />
               <span className="text-slate-300">{client}</span>
             </div>
           ))}
@@ -953,11 +953,11 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-red-400 to-red-600">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-400 to-green-600">
                 <Monitor className="h-5 w-5 text-[#0f172a]" />
               </div>
               <span className="text-lg font-bold text-white">
-                Control<span className="text-red-400">SI</span>
+                Control<span className="text-green-400">SI</span>
               </span>
             </div>
             <p className="mb-6 text-sm leading-relaxed text-slate-400">
@@ -971,22 +971,22 @@ function Footer() {
             <h4 className="mb-4 font-semibold text-white">Servicios</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
-                <a href="#servicios" className="transition-colors hover:text-red-400">
+                <a href="#servicios" className="transition-colors hover:text-green-400">
                   Soporte de Software
                 </a>
               </li>
               <li>
-                <a href="#servicios" className="transition-colors hover:text-red-400">
+                <a href="#servicios" className="transition-colors hover:text-green-400">
                   Reparacion de Hardware
                 </a>
               </li>
               <li>
-                <a href="#servicios" className="transition-colors hover:text-red-400">
-                  Redes y Conectividad
+                <a href="#servicios" className="transition-colors hover:text-green-400">
+                  greenes y Conectividad
                 </a>
               </li>
               <li>
-                <a href="#servicios" className="transition-colors hover:text-red-400">
+                <a href="#servicios" className="transition-colors hover:text-green-400">
                   Abonos Empresariales
                 </a>
               </li>
@@ -998,15 +998,15 @@ function Footer() {
             <h4 className="mb-4 font-semibold text-white">Contacto</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-center gap-2" suppressHydrationWarning>
-                <Phone className="h-4 w-4 text-red-400" />
+                <Phone className="h-4 w-4 text-green-400" />
                 {CONFIG.telefonoFormateado}
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-red-400" />
+                <Mail className="h-4 w-4 text-green-400" />
                 {CONFIG.email}
               </li>
               <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-red-400" />
+                <MapPin className="h-4 w-4 text-green-400" />
                 {CONFIG.direccion}
               </li>
             </ul>
@@ -1017,7 +1017,7 @@ function Footer() {
             <h4 className="mb-4 font-semibold text-white">Horarios</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>{CONFIG.horario}</li>
-              <li className="text-red-400">Urgencias: 24hs por WhatsApp</li>
+              <li className="text-green-400">Urgencias: 24hs por WhatsApp</li>
             </ul>
             <motion.a
               href={WHATSAPP_URL}
@@ -1025,7 +1025,7 @@ function Footer() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-red-500/20 px-4 py-2 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/30"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-green-500/20 px-4 py-2 text-sm font-medium text-green-400 transition-colors hover:bg-green-500/30"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp
@@ -1056,7 +1056,7 @@ function WhatsAppButton() {
       transition={{ delay: 1, type: "spring" }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-red-500 text-white shadow-lg shadow-red-500/30 transition-colors hover:bg-orange-500 hover:shadow-orange-500/30"
+      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 transition-colors hover:bg-orange-500 hover:shadow-orange-500/30"
     >
       <motion.div
         animate={{
