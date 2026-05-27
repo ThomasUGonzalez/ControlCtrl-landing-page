@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Control Servicios Informáticos | Soporte Técnico en Venado Tuerto',
   description: 'Soporte técnico profesional, reparación de PC, notebooks, redes y abonos empresariales en Venado Tuerto y zona. Soluciones informáticas rápidas y confiables.',
   generator: 'v0.app',
+  formatDetection: {
+    telephone: false,
+  },
   icons: {
     icon: [
       {

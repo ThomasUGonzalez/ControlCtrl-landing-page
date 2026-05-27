@@ -7,25 +7,30 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 
-// ==========================================
-// TABLERO DE CONTROL (Editá esto frente al cliente)
-// ==========================================
 const CONFIG = {
   nombreNegocio: "ControlSI",
   ciudad: "Venado Tuerto",
-  telefono: "3462416945", // Solo números, sin espacios ni símbolos
-  telefonoFormateado: "+54 9 3462 41-6945", // Como se verá visualmente
-  email: "info@controlsi.com.ar",
-  direccion: "Brown 1275, Venado Tuerto",
+  provincia: "Santa Fe",
+  telefono: "3462416945", 
+  telefonoFormateado: "+54 9 3462 41-6945", 
+  email: "ThomasGonzalez@gmail.com",
+  direccion: "Brown 1275",
   horario: "Lunes a Viernes de 09:00 a 18:00 hs",
   añosExperiencia: "+15",
+  añoActual: 2026,
 };
 
-// Esta URL se arma sola usando los datos de arriba
+const MAP_QUERY = encodeURIComponent(`${CONFIG.direccion}, ${CONFIG.ciudad}, ${CONFIG.provincia}, Argentina`);
+const MAP_EMBED_URL = `https://maps.google.com/maps?q=${MAP_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+const RESEÑA_EN_VIVO = {
+  mostrar: false, // <-- En la reunión vas a cambiar esto a true
+  name: "Thomas Gonzalez", // <-- Acá ponés el nombre del dueño
+  role: "Dueño de ControlSI",
+  text: "La verdadera página papaaaaaa",
+};
 const WHATSAPP_URL = `https://wa.me/549${CONFIG.telefono}?text=Hola%20${CONFIG.nombreNegocio}%2C%20te%20contacto%20desde%20la%20web.%20Necesito%20asistencia%20t%C3%A9cnica%20en%20${CONFIG.ciudad}.`;
 
-// ==========================================
-// Animation variants
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
@@ -284,15 +289,18 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="mb-6 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
-            Soporte Tecnico Profesional en Venado Tuerto
-          </span>
-        </motion.div>
+        <motion.p
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-slate-400 md:text-xl"
+>
+  Reparación de PC, notebooks, redes empresariales y soluciones informáticas.{" "}
+  <span className="block mt-2 font-semibold text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg inline-block text-sm md:text-base animate-pulse">
+     ¿Tu equipo no enciende o está lento? Diagnóstico rápido en Venado Tuerto.
+  </span>
+  
+</motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -314,8 +322,7 @@ function HeroSection() {
           className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-slate-400 md:text-xl"
         >
           Reparacion de PC, notebooks, redes empresariales y soluciones
-          informaticas. Mas de 15 anos brindando servicio de calidad en Venado
-          Tuerto y la region.
+          informaticas. {CONFIG.añosExperiencia} años de experiencia brindando servicio de calidad en {CONFIG.ciudad} y la region.
         </motion.p>
 
         <motion.div
@@ -355,18 +362,18 @@ function HeroSection() {
           className="mt-20 grid grid-cols-2 gap-8 md:grid-cols-4"
         >
           {[
-            { value: "+15", label: "Anos de experiencia" },
+            { value: CONFIG.añosExperiencia, label: "Años de experiencia" }, // Vinculado a la constante
             { value: "+5000", label: "Equipos reparados" },
-            { value: "+200", label: "Empresas confian" },
+            { value: "+100", label: "Empresas confian" },
             { value: "24hs", label: "Soporte urgente" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl font-bold text-cyan-400 md:text-4xl">
-                {stat.value}
+              {stat.value}
               </div>
-              <div className="mt-1 text-sm text-slate-400">{stat.label}</div>
-            </div>
-          ))}
+            <div className="mt-1 text-sm text-slate-400">{stat.label}</div>
+  </div>
+))}
         </motion.div>
       </div>
     </section>
@@ -578,20 +585,22 @@ function LocationSection() {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Map */}
           <AnimatedSection>
-            <div className="overflow-hidden rounded-2xl border border-slate-700">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3338.8394772193!2d-61.9733!3d-33.7458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c8f8c5c0c1c1c1%3A0x0!2sBrown%201275%2C%20S2600%20Venado%20Tuerto%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale"
-                title="Ubicacion de ControlSI en Venado Tuerto"
-              />
-            </div>
-          </AnimatedSection>
+      <div className="overflow-hidden rounded-2xl border border-slate-700">
+        <iframe
+          // CAMBIAMOS EL SRC POR NUESTRA VARIABLE:
+          src={MAP_EMBED_URL}
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          // Mantenemos el filtro grayscale para el estilo tech si querés
+          className="grayscale invert-[0.9] hue-rotate-180" 
+          title={`Ubicacion de ${CONFIG.nombreNegocio}`}
+        />
+      </div>
+    </AnimatedSection>
 
           {/* Info */}
           <AnimatedSection className="flex flex-col justify-center">
@@ -608,7 +617,7 @@ function LocationSection() {
                   <div>
                     <p className="font-medium text-white">Direccion</p>
                     <p className="text-slate-400">
-                      Brown 1275, S2600 Venado Tuerto, Santa Fe
+                      {CONFIG.direccion}, {CONFIG.ciudad}, {CONFIG.provincia}
                     </p>
                   </div>
                 </div>
@@ -619,7 +628,7 @@ function LocationSection() {
                   </div>
                   <div>
                     <p className="font-medium text-white">Horario de Atencion</p>
-                    <p className="text-slate-400">Lunes a Viernes de 09:00 a 18:00 hs</p>
+                    <p className="text-slate-400">{CONFIG.horario}</p>
                     <p className="mt-1 text-sm text-cyan-400">
                       Urgencias: 24hs por WhatsApp
                     </p>
@@ -632,7 +641,7 @@ function LocationSection() {
                   </div>
                   <div>
                     <p className="font-medium text-white">Telefono</p>
-                    <p className="text-slate-400">+54 9 3462 41-6945</p>
+                    <p className="text-slate-400">{CONFIG.telefonoFormateado}</p>
                   </div>
                 </div>
               </div>
@@ -666,14 +675,14 @@ function LocalSection() {
             <AnimatedSection className="p-8 md:p-12 lg:p-16">
               <span className="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
                 <MapPin className="mr-2 inline-block h-4 w-4" />
-                Venado Tuerto, Santa Fe
+                {CONFIG.ciudad}, {CONFIG.provincia}
               </span>
               <h2 className="mb-6 text-balance text-3xl font-bold text-white md:text-4xl">
                 Lideres en Soporte Tecnico en{" "}
-                <span className="text-cyan-400">Venado Tuerto y zona</span>
+                <span className="text-cyan-400">{CONFIG.ciudad} y zona</span>
               </h2>
               <p className="mb-8 text-pretty leading-relaxed text-slate-400">
-                Desde hace mas de 15 anos, somos la empresa de confianza para
+                Desde hace {CONFIG.añosExperiencia} años, somos la empresa de confianza para
                 cientos de comercios, profesionales y familias de la region. Nos
                 enorgullece ser parte del crecimiento tecnologico de nuestra
                 ciudad.
@@ -715,9 +724,9 @@ function LocalSection() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="mb-4 text-8xl font-bold text-cyan-500/20">
-                    VT
+                    {CONFIG.nombreNegocio}
                   </div>
-                  <p className="text-slate-500">Venado Tuerto, Santa Fe</p>
+                  <p className="text-slate-500">{CONFIG.ciudad}, {CONFIG.provincia}</p>
                 </div>
               </div>
             </div>
@@ -727,7 +736,74 @@ function LocalSection() {
     </section>
   );
 }
+const reviewsBase = [
+  {
+    name: "Carlos Rodríguez",
+    role: "Comercio Centro",
+    text: "Excelente atención. Lleve la notebook del negocio que no arrancaba y en 24hs la tuvieron lista con cambio de SSD. Salvaron mis archivos.",
+    stars: 5,
+  },
+  {
+    name: "María Laura B.",
+    role: "Profesional Independiente",
+    text: "Muy profesionales. Instalaron el sistema operativo y optimizaron mi PC de escritorio. Ahora vuela. Super recomendables en Venado.",
+    stars: 5,
+  },
+  {
+    name: "Estudio Contable VT",
+    role: "Abono Mensual",
+    text: "Tenemos el abono de mantenimiento para nuestras oficinas. Ante cualquier problema de red responden al instante. Un alivio técnico.",
+    stars: 5,
+  },
+];
+const reviews = RESEÑA_EN_VIVO.mostrar 
+  ? [{ name: RESEÑA_EN_VIVO.name, role: RESEÑA_EN_VIVO.role, text: RESEÑA_EN_VIVO.text, stars: 5 }, ...reviewsBase]
+  : reviewsBase;
 
+function ReviewsSection() {
+  return (
+    <section id="reseñas" className="px-4 py-24 border-t border-slate-800 bg-[#0f172a]/30">
+      <div className="mx-auto max-w-7xl">
+        <AnimatedSection className="mb-16 text-center">
+          <span className="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
+            Opiniones de Clientes
+          </span>
+          <h2 className="mb-4 text-balance text-3xl font-bold text-white md:text-5xl">
+            La confianza de nuestra <span className="text-cyan-400">comunidad</span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-pretty text-slate-400">
+            Mirá lo que dicen los comercios y profesionales de Venado Tuerto que ya confían en nuestro soporte técnico.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {reviews.map((review, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -5 }}
+              className="rounded-2xl border border-slate-700 bg-[#1e293b]/40 p-6 backdrop-blur-sm flex flex-col justify-between"
+            >
+              <div>
+                <div className="mb-4 flex gap-1 text-amber-400">
+                  {Array.from({ length: review.stars }).map((_, i) => (
+                    <span key={i}>★</span>
+                  ))}
+                </div>
+                <p className="mb-6 text-sm italic leading-relaxed text-slate-300">
+                  "{review.text}"
+                </p>
+              </div>
+              <div className="border-t border-slate-700/50 pt-4">
+                <p className="font-semibold text-white">{review.name}</p>
+                <p className="text-xs text-cyan-400">{review.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 // FAQ Section
 const faqs = [
   {
@@ -815,7 +891,7 @@ const clients = [
   "Estudios Contables",
   "Clinicas",
   "Escribanias",
-  "PyMEs",
+  "Pymes",
   "Profesionales",
   "Industrias",
   "Cooperativas",
@@ -885,8 +961,8 @@ function Footer() {
               </span>
             </div>
             <p className="mb-6 text-sm leading-relaxed text-slate-400">
-              Control Servicios Informaticos. Tu partner tecnologico de
-              confianza en Venado Tuerto.
+              {CONFIG.nombreNegocio}. Tu partner tecnologico de
+              confianza en {CONFIG.ciudad}.
             </p>
           </div>
 
@@ -921,17 +997,17 @@ function Footer() {
           <div>
             <h4 className="mb-4 font-semibold text-white">Contacto</h4>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li className="flex items-center gap-2" >
+              <li className="flex items-center gap-2" suppressHydrationWarning>
                 <Phone className="h-4 w-4 text-cyan-400" />
-                +54 9 3462 41-6945
+                {CONFIG.telefonoFormateado}
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-cyan-400" />
-                info@controlsi.com.ar
+                {CONFIG.email}
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-cyan-400" />
-                Brown 1275, Venado Tuerto
+                {CONFIG.direccion}
               </li>
             </ul>
           </div>
@@ -940,7 +1016,7 @@ function Footer() {
           <div>
             <h4 className="mb-4 font-semibold text-white">Horarios</h4>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li>Lunes a Viernes: 09:00 - 18:00</li>
+              <li>{CONFIG.horario}</li>
               <li className="text-cyan-400">Urgencias: 24hs por WhatsApp</li>
             </ul>
             <motion.a
@@ -959,10 +1035,9 @@ function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 md:flex-row">
           <p className="text-sm text-slate-500">
-            2024 Control Servicios Informaticos. Todos los derechos
-            reservados.
+            {CONFIG.añoActual} {CONFIG.nombreNegocio}. Todos los derechos reservados.
           </p>
-          <p className="text-sm text-slate-500">Venado Tuerto, Santa Fe</p>
+          <p className="text-sm text-slate-500">{CONFIG.ciudad}, {CONFIG.provincia}</p>
         </div>
       </div>
     </footer>
@@ -981,7 +1056,7 @@ function WhatsAppButton() {
       transition={{ delay: 1, type: "spring" }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 transition-colors hover:bg-orange-500 hover:shadow-orange-500/30"
+      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-cyan-500 text-white shadow-lg shadow-cyan-500/30 transition-colors hover:bg-orange-500 hover:shadow-orange-500/30"
     >
       <motion.div
         animate={{
@@ -1010,6 +1085,7 @@ export default function HomePage() {
       <ServicesSection />
       <LocationSection />
       <LocalSection />
+      <ReviewsSection />
       <FAQSection />
       <Footer />
       <WhatsAppButton />
