@@ -1,6 +1,6 @@
 'use client'
 
-// Inspigreen by react-hot-toast library
+// Inspicyan by react-hot-toast library
 import * as React from 'react'
 
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
@@ -71,7 +71,7 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
-export const greenucer = (state: State, action: Action): State => {
+export const cyanucer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'ADD_TOAST':
       return {
@@ -131,7 +131,7 @@ const listeners: Array<(state: State) => void> = []
 let memoryState: State = { toasts: [] }
 
 function dispatch(action: Action) {
-  memoryState = greenucer(memoryState, action)
+  memoryState = cyanucer(memoryState, action)
   listeners.forEach((listener) => {
     listener(memoryState)
   })

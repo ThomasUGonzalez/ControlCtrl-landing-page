@@ -8,7 +8,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Control Servicios Informáticos | Soporte Técnico en Venado Tuerto',
-  description: 'Soporte técnico profesional, reparación de PC, notebooks, greenes y abonos empresariales en Venado Tuerto y zona. Soluciones informáticas rápidas y confiables.',
+  description: 'Soporte técnico profesional, reparación de PC, notebooks, cyanes y abonos empresariales en Venado Tuerto y zona. Soluciones informáticas rápidas y confiables.',
   generator: 'v0.app',
   formatDetection: {
     telephone: false,
